@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GAPKHAO - Plan Your Journey" />
+  <title>Planer | GAPKHAO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Kanit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <header class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-fist">👊</span>
+        <span class="logo-text">GAPKHAO</span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="explore.html" class="nav-link">Explore</a>
+        <a href="street-life.html" class="nav-link">Street Life</a>
+        <a href="stories.html" class="nav-link">Stories</a>
+        <a href="planner.html" class="nav-link nav-link--active">Planner</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main style="padding-top: 80px;">
+
+    <!-- ========== PLANER ========== -->
+    <section class="planer-section" id="planer">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Planer</span>
+          <h2 class="section-title">วางแผนการเดินทางของคุณ</h2>
+          <p class="section-sub">เลือกดูได้ แล้วเราจะจัดให้เลย</p>
+        </div>
+
+        <div class="planer-layout">
+          <!-- Form -->
+          <div class="planer-form reveal">
+            <h3>🗺️ สร้างแผนของคุณ</h3>
+            <p class="planer-sub">เลือกดูได้ แล้วเราจะจัดให้เลย</p>
+
+            <div class="day-selector">
+              <span>จำนวนวัน:</span>
+              <div class="day-btns">
+                <button class="day-btn active" data-days="1">1 วัน 🌅</button>
+                <button class="day-btn" data-days="2">2 วัน 🌇</button>
+                <button class="day-btn" data-days="3">3 วัน 🌆</button>
+              </div>
+            </div>
+
+            <div class="plan-name-field">
+              <label for="planName">ชื่อแผน</label>
+              <input type="text" id="planName" placeholder="ทริปบางกอกของฉัน..." />
+            </div>
+
+            <ul class="planer-places" id="planerPlaces">
+              <li class="planer-place-item">
+                <label><input type="checkbox" checked /> <span>📍</span> <strong>Yaowarat Night Walk</strong> <small>ร้อยโกสินทร์ · 3.4 km · ⭐ 4.98</small></label>
+              </li>
+              <li class="planer-place-item">
+                <label><input type="checkbox" /> <span>📍</span> <strong>Chatuchak Art Walk</strong> <small>ร้อยโกสินทร์ · 3.4 km · ⭐ 4.98</small></label>
+              </li>
+              <li class="planer-place-item">
+                <label><input type="checkbox" /> <span>📍</span> <strong>Rattanakosin Heritage</strong> <small>ร้อยโกสินทร์ · 3.4 km · ⭐ 4.98</small></label>
+              </li>
+              <li class="planer-place-item">
+                <label><input type="checkbox" /> <span>📍</span> <strong>Bang Rak Street Food</strong> <small>ร้อยโกสินทร์ · 3.4 km · ⭐ 4.95</small></label>
+              </li>
+            </ul>
+
+            <button class="btn btn--primary btn--full" id="makePlanBtn">MAKE MY PLAN</button>
+          </div>
+
+          <!-- Preview -->
+          <div class="planer-preview reveal delay-1" id="planerPreview">
+            <h3>ตัวอย่างแผน</h3>
+            <ol class="plan-list" id="planList">
+              <li class="plan-item plan-item--1"><span class="plan-num">1</span><div><strong>First Destination</strong><small>ร้อยโกสินทร์ · 3.4 km · ⭐ 4.98</small></div></li>
+              <li class="plan-item plan-item--2"><span class="plan-num">2</span><div><strong>Second Destination</strong><small>ร้อยโกสินทร์ · 3.4 km · ⭐ 4.08</small></div></li>
+              <li class="plan-item plan-item--3"><span class="plan-num">3</span><div><strong>Third Destination</strong><small>ร้อยโกสินทร์ · 3.4 km · ⭐ 4.08</small></div></li>
+              <li class="plan-item plan-item--4"><span class="plan-num">4</span><div><strong>Fourth Destination</strong><small>ร้อยโกสินทร์ · 3.4 km · ⭐ 4.98</small></div></li>
+            </ol>
+            <div class="plan-actions">
+              <button class="btn btn--outline" id="downloadPlan">Download Plan</button>
+              <button class="btn btn--primary" id="shareLink">Share Link</button>
+            </div>
+
+            <!-- Bookmark toggle -->
+            <div class="bookmark-toggle">
+              <button class="bookmark-btn" id="bookmarkBtn" aria-label="Bookmark this plan">
+                <span class="bm-icon">🔖</span> Bookmark Plan
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo logo--light">
+          <span class="logo-fist">👊</span>
+          <span class="logo-text">GAPKHAO</span>
+        </a>
+        <p>ทุกซอยคือเรื่องราวที่รอให้คุณค้นพบ ✨</p>
+      </div>
+
+      <nav class="footer-nav">
+        <div class="footer-col">
+          <h4>ABOUT</h4>
+          <a href="#">About us</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>EXPLORE</h4>
+          <a href="explore.html">Route</a>
+          <a href="street-life.html">Street life</a>
+        </div>
+        <div class="footer-col">
+          <h4>STORIES</h4>
+          <a href="stories.html">Video</a>
+          <a href="stories.html">Blog</a>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 GAPKHAO · All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

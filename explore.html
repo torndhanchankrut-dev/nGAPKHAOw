@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GAPKHAO - Explore Thai Street Food Routes" />
+  <title>Explore | GAPKHAO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Kanit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Leaflet CSS for Interactive Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <header class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-fist">👊</span>
+        <span class="logo-text">GAPKHAO</span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="explore.html" class="nav-link nav-link--active">Explore</a>
+        <a href="street-life.html" class="nav-link">Street Life</a>
+        <a href="stories.html" class="nav-link">Stories</a>
+        <a href="planner.html" class="nav-link">Planner</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main style="padding-top: 80px;">
+
+    <!-- ========== EXPLORE ========== -->
+    <section class="explore-section" id="explore">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Explore</span>
+          <h2 class="section-title">แนะนำแหล่ง Street Food ใกล้ๆ</h2>
+        </div>
+
+        <div class="explore-layout">
+          <!-- Filter + List -->
+          <aside class="explore-sidebar reveal">
+            <div class="filter-tabs">
+              <button class="filter-btn active" data-filter="all">All</button>
+              <button class="filter-btn" data-filter="food">Food</button>
+              <button class="filter-btn" data-filter="art">Art</button>
+              <button class="filter-btn" data-filter="culture">Culture</button>
+            </div>
+
+            <div class="filter-distance">
+              <label>DISTANCE: 0 – <span id="distVal">5</span> km</label>
+              <input type="range" id="distRange" min="1" max="10" value="5" />
+            </div>
+
+            <p class="results-count">RESULTS: 12 / 12 routes</p>
+
+            <ul class="place-list" id="placeList">
+              <li class="place-card active" data-filter="culture">
+                <div class="place-pin">📍</div>
+                <div class="place-info">
+                  <strong>Yaowarat Night Walk</strong>
+                  <span>เยาวราช · 2.1 km · ⭐ 4.9 · 💰 Free</span>
+                </div>
+              </li>
+              <li class="place-card" data-filter="culture">
+                <div class="place-pin">📍</div>
+                <div class="place-info">
+                  <strong>Rattanakosin Heritage</strong>
+                  <span>รัตนโกสินทร์ · 3.4 km · ⭐ 4.50</span>
+                </div>
+              </li>
+              <li class="place-card" data-filter="art">
+                <div class="place-pin">📍</div>
+                <div class="place-info">
+                  <strong>Chatuchak Art Walk</strong>
+                  <span>จตุจักร · 1.8 km · ⭐ 4.7</span>
+                </div>
+              </li>
+              <li class="place-card" data-filter="food">
+                <div class="place-pin">📍</div>
+                <div class="place-info">
+                  <strong>Bang Rak Street Food</strong>
+                  <span>บางรัก · 2.6 km · ⭐ 4.8</span>
+                </div>
+              </li>
+              <li class="place-card" data-filter="food">
+                <div class="place-pin">📍</div>
+                <div class="place-info">
+                  <strong>Talat Noi Morning Market</strong>
+                  <span>ตลาดน้อย · 3.0 km · ⭐ 4.6</span>
+                </div>
+              </li>
+            </ul>
+          </aside>
+
+          <!-- Map -->
+          <div class="explore-map reveal delay-1">
+            <div id="map" class="interactive-map"></div>
+            
+            <!-- Place Detail Panel -->
+            <div id="placeDetail" class="place-detail-panel">
+              <button class="close-detail" id="closeDetail">✕</button>
+              <div class="detail-content">
+                <h3 id="detailName">ก๋วยจั๊บนายเอ็ก (Nai Ek Roll Noodle)</h3>
+                <div class="detail-meta">
+                  <span class="detail-distance">🚶 1.8 km</span>
+                  <span class="detail-rating">⭐ 3.9</span>
+                  <span class="detail-category">🍜 Food</span>
+                </div>
+                <p class="detail-hours">⏰ เปิดบริการ: 23:59</p>
+                <p class="detail-address" id="detailAddress">
+                  ถนน เยาวราช กรุงเทพมหานคร ใกล้กับ Royal Hotel Bangkok<br/>
+                  200 ม. จาก MRT รัชดาภิเษก<br/>
+                  800 ม. จาก MRT ห้วยขวาง
+                </p>
+                <p class="detail-phone">📞 โทรศัพท์: 0222264651</p>
+                
+                <div class="detail-images">
+                  <img src="https://images.unsplash.com/photo-1555126634-323283e090fa?w=300&q=80" alt="Restaurant" />
+                  <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300&q=80" alt="Menu" />
+                  <img src="https://images.unsplash.com/photo-1562802378-063ec186a863?w=300&q=80" alt="Food" />
+                  <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=300&q=80" alt="Interior" />
+                </div>
+                
+                <button class="btn btn--primary btn--full" id="startWalkingBtn">
+                  Start Walking
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo logo--light">
+          <span class="logo-fist">👊</span>
+          <span class="logo-text">GAPKHAO</span>
+        </a>
+        <p>ทุกซอยคือเรื่องราวที่รอให้คุณค้นพบ ✨</p>
+      </div>
+
+      <nav class="footer-nav">
+        <div class="footer-col">
+          <h4>ABOUT</h4>
+          <a href="#">About us</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>EXPLORE</h4>
+          <a href="explore.html">Route</a>
+          <a href="street-life.html">Street life</a>
+        </div>
+        <div class="footer-col">
+          <h4>STORIES</h4>
+          <a href="stories.html">Video</a>
+          <a href="stories.html">Blog</a>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 GAPKHAO · All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Leaflet JS for Interactive Map -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/explore-map.js"></script>
+</body>
+</html>
